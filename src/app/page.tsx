@@ -3,7 +3,9 @@
 import Navbar from "@/components/navbar";
 import Info from "@/components/main/info";
 import Carousels from "@/components/main/carousel";
+import ProductShowcase from "@/components/main/productshowcase";
 import * as React from "react";
+import Footer from "@/components/common/footer";
 
 
 export default function Home() {
@@ -20,6 +22,10 @@ export default function Home() {
           <Carousels />
         </div>
       </header>
+
+      <ProductShowcase />
+
+      <Footer />
     </>
   );
 }

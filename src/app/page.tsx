@@ -5,7 +5,9 @@ import Info from "@/components/main/info";
 import Carousels from "@/components/main/carousel";
 import ProductShowcase from "@/components/main/productshowcase";
 import * as React from "react";
+import { CarouselCategories } from "@/components/main/carouselCategories";
 import Footer from "@/components/common/footer";
+import TrendingProducts from "@/components/main/trendingProducts";
 
 
 export default function Home() {
@@ -24,7 +26,8 @@ export default function Home() {
       </header>
 
       <ProductShowcase />
-
+      <CarouselCategories />
+      <TrendingProducts/>
       <Footer />
     </>
   );

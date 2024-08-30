@@ -109,13 +109,7 @@ export default function Component() {
                 <ChromeIcon className="mr-2 h-4 w-4" />
                 Sign in with Google
               </Button>
-              <Link
-                href="#"
-                className="inline-flex items-center justify-center w-full"
-                prefetch={false}>
-                <span>Dont have an account?</span>
-                <span className="ml-2 underline">Register</span>
-              </Link>
+              <p>dont have an account <Link href="/register" className="underline text-blue-500 ">sign up</Link></p>
             </div>
           </CardContent>
           <CardFooter>

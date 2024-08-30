@@ -1,15 +1,17 @@
-// lib/prisma.js
+// prisma.ts
 
 import { PrismaClient } from '@prisma/client';
 
-const globalForPrisma = globalThis;
+declare global {
+  var prisma: PrismaClient | undefined;
+}
 
 const prisma =
-  globalForPrisma.prisma ||
+  global.prisma ||
   new PrismaClient({
     log: ['query'], // Optional: log query SQL untuk debugging
   });
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+if (process.env.NODE_ENV !== 'production') global.prisma = prisma;
 
 export default prisma;

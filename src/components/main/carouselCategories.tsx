@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -8,49 +7,45 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
 import Image from "next/image";
+import image from "../../../public/showcase/image1.jpeg";
 
 const data = [
   {
     id: 1,
-    image:
-      "https://images.eq3.com/image-service/0e021226-37da-47dc-a6be-759a71bece56/Joan-30216-S3-Panama-Natural-Walnut-Legs-Front-Web.jpg_ORIGINAL.jpg",
+    image: image.src,
   },
   {
     id: 1,
-    image:
-      "https://media.designcafe.com/wp-content/uploads/2024/01/24175345/modern-luxury-bedroom-design-ideas.jpg",
+    image: image.src,
   },
   {
     id: 1,
-    image:
-      "https://media.designcafe.com/wp-content/uploads/2024/01/24175345/modern-luxury-bedroom-design-ideas.jpg",
+    image: image.src,
   },
   {
     id: 1,
-    image:
-      "https://media.designcafe.com/wp-content/uploads/2024/01/24175345/modern-luxury-bedroom-design-ideas.jpg",
+    image: image.src,
   },
   {
     id: 1,
-    image:
-      "https://media.designcafe.com/wp-content/uploads/2024/01/24175345/modern-luxury-bedroom-design-ideas.jpg",
+    image: image.src,
   },
   {
     id: 1,
-    image:
-      "https://media.designcafe.com/wp-content/uploads/2024/01/24175345/modern-luxury-bedroom-design-ideas.jpg",
+    image: image.src,
   },
   {
     id: 1,
-    image:
-      "https://media.designcafe.com/wp-content/uploads/2024/01/24175345/modern-luxury-bedroom-design-ideas.jpg",
+    image: image.src,
   },
   {
     id: 1,
-    image:
-      "https://media.designcafe.com/wp-content/uploads/2024/01/24175345/modern-luxury-bedroom-design-ideas.jpg",
+    image: image.src,
+  },
+  {
+    id: 1,
+    image: image.src,
   },
 ];
 
@@ -58,7 +53,9 @@ export function CarouselCategories() {
   return (
     <div className="flex flex-col justify-center items-center p-10 px-10">
       <div className="w-full py-5">
-        <h1 className="text-5xl text-left font-semibold text-black ">Feature Categories</h1>
+        <h1 className="text-5xl text-left font-semibold text-black ">
+          Feature Categories
+        </h1>
       </div>
       <Carousel className="w-full px-10">
         <CarouselContent className="-ml-1 gap-2 ">
@@ -67,7 +64,13 @@ export function CarouselCategories() {
               <div className="p-1">
                 <Card className="w-[10rem] bg-transparent border-0 ">
                   <CardContent className="flex items-center justify-center p-0 object-fit">
-                    <img src={item.image} alt="" className="rounded-xl w-full h-64 object-cover" />
+                    <Image
+                      src={item.image}
+                      alt={`Image ${index + 1}`}
+                      width={800}
+                      height={800}
+                      className="w-full h-[15rem] object-cover rounded-2xl"
+                    />
                   </CardContent>
                 </Card>
               </div>

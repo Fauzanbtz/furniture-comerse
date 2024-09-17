@@ -26,7 +26,12 @@ model User {
 
 model Product {
   id        String   @id @default(cuid())
-  userId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  name      String
+  price     Float
+  image     String
+  description String
+  category String
+  stock Int
 }

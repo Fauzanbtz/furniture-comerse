@@ -9,8 +9,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import AddProducts from "../order/orders";
-import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useState, useEffect } from "react";
 
 export default function Main() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,6 +40,16 @@ export default function Main() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        closeModal();
+        setSuccess("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
+
   const addProducts = async (event: any) => {
     event.preventDefault();
 
@@ -51,21 +69,25 @@ export default function Main() {
         }),
       });
 
+      // Jika respons tidak ok, tangkap pesan error
       if (!res.ok) {
-        const errorData = await res.json(); // Dapatkan pesan error dari server jika ada
-        throw new Error(errorData.message || "Request failed"); // Gunakan pesan error dari server jika tersedia
-      } else {
-        setSuccess("Product added successfully");
-        setName("");
-        setPrice(0);
-        setImage("");
-        setDescription("");
-        setCategory("");
-        setStock(0);
+        const errorData = await res.json(); // Dapatkan pesan error dari server
+        throw new Error(errorData.message || "Request failed"); // Lempar error dengan pesan
       }
-      // Periksa apakah respons adalah JSON yang valid
-    } catch (error) {
-      console.error("Request failed:", error);
+
+      // Reset form dan tampilkan pesan sukses jika berhasil
+      setSuccess("Product added successfully");
+      setError(""); // Bersihkan error
+      setName("");
+      setPrice(0);
+      setImage("");
+      setDescription("");
+      setCategory("");
+      setStock(0);
+    } catch (err: any) {
+      console.error("Request failed:", err);
+      setSuccess(""); // Hapus pesan sukses jika ada error
+      setError(err.message || "Something went wrong."); // Simpan pesan error ke state
     }
   };
 
@@ -120,9 +142,9 @@ export default function Main() {
                     <label className="block text-sm font-medium mb-1">
                       Deskripsi Produk
                     </label>
-                    <input
-                      type="text"
+                    <textarea
                       className="border p-2 w-full"
+                      rows={5}
                       onChange={(e) => setDescription(e.target.value)}
                     />
                   </div>
@@ -130,11 +152,21 @@ export default function Main() {
                     <label className="block text-sm font-medium mb-1">
                       Kategori
                     </label>
-                    <input
-                      type="text"
-                      className="border p-2 w-full"
-                      onChange={(e) => setCategory(e.target.value)}
-                    />
+                    <Select onValueChange={(value) => setCategory(value)}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Category</SelectLabel>
+                          <SelectItem value="apple">Apple</SelectItem>
+                          <SelectItem value="banana">Banana</SelectItem>
+                          <SelectItem value="blueberry">Blueberry</SelectItem>
+                          <SelectItem value="grapes">Grapes</SelectItem>
+                          <SelectItem value="pineapple">Pineapple</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="mb-4">
                     <label className="block text-sm font-medium mb-1">

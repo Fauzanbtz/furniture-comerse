@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState, lazy, Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-
 import {
   DropdownMenu,
   DropdownMenuTrigger,

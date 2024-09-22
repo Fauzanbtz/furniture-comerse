@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,8 +20,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState, useEffect } from "react";
+import Item from "./item/item";
 
-export default function Main() {
+type CategoryItem = {
+  label: string;
+  value: string;
+}
+
+
+export default function Main({categoryItem, setCategoryItem, search, setSearch}: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddProductClick = () => {
@@ -91,8 +99,21 @@ export default function Main() {
     }
   };
 
+  const categories: CategoryItem[] = [
+    { label: "All Categories", value: "" },
+    { label: "Men's Clothing", value: "men's clothing" },
+    { label: "Women's Clothing", value: "women's clothing" },
+    { label: "Electronics", value: "electronics" },
+    { label: "Jewelery", value: "jewelery" },
+  ];
+
+  const selectedCategoryLabel = categories.find(
+    (cat) => cat.value === category
+  )?.label;
+
   return (
     <div>
+      
       <header className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Products Grid</h1>
         <div>
@@ -217,30 +238,29 @@ export default function Main() {
             className="border border-gray-400 rounded-md p-2"
           />
           <div>
+            {/* DropdownMenu untuk kategori */}
             <DropdownMenu>
-              <DropdownMenuTrigger className="border border-gray-400 text-black p-2 rounded-md inline-flex items-center">
-                Categories <FaChevronDown className="ml-2" />
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">
+                  {selectedCategoryLabel || "Select Category"}
+                </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white p-2 mt-2 shadow-lg rounded-md w-48">
-                <DropdownMenuItem>
-                  <a href="#">Electronics</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a href="#">Fashion</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a href="#">Home Appliances</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a href="#">Books</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a href="#">Sports</a>
-                </DropdownMenuItem>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>Select Category</DropdownMenuLabel>
+                {categories.map((cat) => (
+                  <DropdownMenuItem
+                    key={cat.value}
+                    onClick={() => setCategory(cat.value)}>
+                    {cat.label}
+                  </DropdownMenuItem>
+                ))}
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
         </div>
+      </div>
+      <div className="border-t-2 p-5 bg-white ">
+        <Item />
       </div>
     </div>
   );

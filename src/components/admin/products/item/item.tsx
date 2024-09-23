@@ -12,7 +12,16 @@ import {
 import Image from "next/image";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
-export default function Item({ products = [] }: any) {
+import useFetchProducts from "@/hooks/useFetchProducts";
+export default function Item() {
+  const { categoryItem, setCategoryItem, search, setSearch, filteredProducts } =
+    useFetchProducts();
+    console.log({
+      filteredProducts
+    });
+    const products = []
+    
+
   const limitWords = (text: string, wordLimit: number) => {
     const words = text.split(" ");
     if (words.length > wordLimit) {
@@ -21,13 +30,12 @@ export default function Item({ products = [] }: any) {
     return text;
   };
 
-
   const skeletonCount = 4;
   return (
     <div className="flex justify-center items-center flex-wrap gap-4">
       {products.length === 0 ? (
         <div className="flex justify-center items-center space-y-3 gap-5">
-          {Array.from({ length: skeletonCount }).map((_, index) => (
+          {/* {Array.from({ length: skeletonCount }).map((_, index) => (
             <div key={index} className="flex flex-col space-y-3">
               <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-500" />
               <div className="space-y-2">
@@ -35,7 +43,8 @@ export default function Item({ products = [] }: any) {
                 <Skeleton className="h-4 w-[200px] bg-slate-400" />
               </div>
             </div>
-          ))}
+          ))} */}
+          <div className="text-5xl font-bold">NO ITEM</div>
         </div>
       ) : (
         products.map((item: any) => (

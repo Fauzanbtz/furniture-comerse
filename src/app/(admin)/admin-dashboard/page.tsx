@@ -2,7 +2,7 @@
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   DropdownMenu,
@@ -17,6 +17,7 @@ const Products = lazy(() => import("@/components/admin/products/main"));
 const Orders = lazy(() => import("@/components/admin/order/orders"));
 const Users = lazy(() => import("@/components/admin/users/users"));
 const Report = lazy(() => import("@/components/admin/report/report"));
+
 
 
 export default function Component() {
@@ -37,6 +38,7 @@ export default function Component() {
   };
 
   return (
+
     <div>
       <div className="flex min-h-screen w-full flex-col bg-muted/40">
         <header className="flex h-14 items-center gap-4 border-b bg-background px-4 sm:h-16 sm:px-6">

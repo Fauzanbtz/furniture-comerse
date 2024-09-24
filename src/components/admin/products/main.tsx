@@ -3,14 +3,6 @@ import { FaPlus } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Select,
   SelectContent,
   SelectGroup,
@@ -21,14 +13,9 @@ import {
 } from "@/components/ui/select";
 import { useState, useEffect } from "react";
 import Item from "./item/item";
+import DropDown from "./dropDown";
 
-type CategoryItem = {
-  label: string;
-  value: string;
-}
-
-
-export default function Main({categoryItem, setCategoryItem, search, setSearch}: any) {
+export default function Main() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddProductClick = () => {
@@ -43,8 +30,8 @@ export default function Main({categoryItem, setCategoryItem, search, setSearch}:
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
   const [stock, setStock] = useState(0);
+  const [category, setCategory] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
@@ -99,17 +86,6 @@ export default function Main({categoryItem, setCategoryItem, search, setSearch}:
     }
   };
 
-  const categories: CategoryItem[] = [
-    { label: "All Categories", value: "" },
-    { label: "Men's Clothing", value: "men's clothing" },
-    { label: "Women's Clothing", value: "women's clothing" },
-    { label: "Electronics", value: "electronics" },
-    { label: "Jewelery", value: "jewelery" },
-  ];
-
-  const selectedCategoryLabel = categories.find(
-    (cat) => cat.value === category
-  )?.label;
 
   return (
     <div>
@@ -237,26 +213,7 @@ export default function Main({categoryItem, setCategoryItem, search, setSearch}:
             placeholder="Search Products"
             className="border border-gray-400 rounded-md p-2"
           />
-          <div>
-            {/* DropdownMenu untuk kategori */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                  {selectedCategoryLabel || "Select Category"}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>Select Category</DropdownMenuLabel>
-                {categories.map((cat) => (
-                  <DropdownMenuItem
-                    key={cat.value}
-                    onClick={() => setCategory(cat.value)}>
-                    {cat.label}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+          <DropDown />
         </div>
       </div>
       <div className="border-t-2 p-5 bg-white ">

@@ -21,6 +21,20 @@ const Info = () => {
           Follow Instagram
         </a>
       </div>
+      <div className="flex gap-10">
+        <div>
+          <h1 className="text-2xl text-white">2500+</h1>
+          <p className="text-white font-thin">Unique Styles</p>
+        </div>
+        <div>
+        <h1 className="text-2xl text-white">5000+</h1>
+        <p className="text-white font-thin">Happy Customers</p>
+        </div>
+        <div>
+        <h1 className="text-2xl text-white">300+</h1>
+        <p className="text-white font-thin">Certefied Outlets</p>
+        </div>
+      </div>
     </div>
   );
 };

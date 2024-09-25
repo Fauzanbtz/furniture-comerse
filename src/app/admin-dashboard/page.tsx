@@ -2,7 +2,7 @@
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useState, lazy, Suspense, useEffect } from "react";
+import { useState, lazy, Suspense} from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   DropdownMenu,

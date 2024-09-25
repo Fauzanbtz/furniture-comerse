@@ -14,8 +14,6 @@ export default function useFetchProducts() {
     })();
   }, []);
   
-
-
   const filteredProducts = products.filter((product) => {
     const matchesCategory = categoryItem
       ? product.category === categoryItem

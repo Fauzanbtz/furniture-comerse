@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa";
-import { FaChevronDown } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -11,9 +10,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { useState, useEffect } from "react";
-import Item from "./item/item";
-import DropDown from "./dropDown";
+import Image from "next/image";
+import { CiEdit } from "react-icons/ci";
+import { MdDelete } from "react-icons/md";
+import { fetchProducts } from "@/services/fetchProducts";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Main() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +49,6 @@ export default function Main() {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [stock, setStock] = useState(0);
-  const [category, setCategory] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
@@ -86,10 +103,52 @@ export default function Main() {
     }
   };
 
+  // --------- Handle Category And Fethcing ---------
+  const [category, setCategory] = useState("");
+  const [products, setProducts] = useState<
+    {
+      title: any;
+      category: string;
+    }[]
+  >([]);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const data = await fetchProducts();
+      setProducts(data);
+    })();
+  }, []);
+
+  const filteredProducts = products.filter((product) => {
+    const matchesCategory = category ? product.category === category : true;
+    const matchesSearch = search
+      ? product.title.toLowerCase().includes(search.toLowerCase())
+      : true;
+
+    return matchesCategory && matchesSearch;
+  });
+
+  const limitWords = (text: string, wordLimit: number) => {
+    const words = text.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return text;
+  };
+
+  const skeletonCount = 4;
+
+  const categories = [
+    { label: "All Categories", value: "" },
+    { label: "Men's Clothing", value: "men's clothing" },
+    { label: "Women's Clothing", value: "women's clothing" },
+    { label: "Electronics", value: "electronics" },
+    { label: "Jewelery", value: "jewelery" },
+  ];
 
   return (
     <div>
-      
       <header className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Products Grid</h1>
         <div>
@@ -211,13 +270,85 @@ export default function Main() {
           <input
             type="text"
             placeholder="Search Products"
+            onChange={(e) => setSearch(e.target.value)}
             className="border border-gray-400 rounded-md p-2"
           />
-          <DropDown />
+          {/*---------- Drop Down Section ----------*/}
+          <div className="border border-gray-400 rounded-md">
+            {/* DropdownMenu untuk kategori */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">
+                  {category || "Select Category"}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>Select Category</DropdownMenuLabel>
+                {categories.map((cat) => (
+                  <DropdownMenuItem
+                    key={cat.label}
+                    onClick={() => setCategory(cat.value)}>
+                    {cat.label}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </div>
       <div className="border-t-2 p-5 bg-white ">
-        <Item />
+        <div className="flex justify-center items-center flex-wrap gap-4">
+          {products.length === 0 ? (
+            <div className="flex justify-center items-center space-y-3 gap-5">
+              {Array.from({ length: skeletonCount }).map((_, index) => (
+                <div key={index} className="flex flex-col space-y-3">
+                  <Skeleton className="h-[125px] w-[250px] rounded-xl bg-slate-500" />
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-[250px] bg-slate-400" />
+                    <Skeleton className="h-4 w-[200px] bg-slate-400" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            filteredProducts.map((item: any) => (
+              <Card
+                key={item.id}
+                className="w-56 bg-base-100 shadow-xl h-96 border border-gray-300 flex flex-col justify-between">
+                <CardHeader className="py-2">
+                  <div>
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={400}
+                      height={400}
+                      className="object-fill h-56 w-56"
+                    />
+                  </div>
+                  <CardTitle className="font-normal text-sm">
+                    {limitWords(item.title, 5)} {/* Batas 20 kata */}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm font-bold py-0">
+                  ${item.price}
+                </CardContent>
+                <CardFooter className="py-0">{item.category}</CardFooter>
+                <div className="flex justify-around text-end p-2">
+                  <Link
+                    href="#"
+                    className="btn btn-sm btn-primary flex items-center gap-2 px-2 border rounded-md ">
+                    <CiEdit />
+                    Edit
+                  </Link>
+                  <button className="btn btn-sm btn-error flex items-center gap-2 px-2 border rounded-md text-red-500 border-[#ee90a4]">
+                    <MdDelete />
+                    Delete
+                  </button>
+                </div>
+              </Card>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

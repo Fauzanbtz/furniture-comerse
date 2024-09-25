@@ -32,12 +32,12 @@ import { icons } from "lucide-react";
 const ProductShowcase = () => {
   return (
     <div>
-      <div className="flex flex-wrap justify-around items-center py-10  text-center">
+      <div className="flex flex-wrap justify-around items-center py-10 text-center">
         <div className="flex flex-col justify-center items-center">
           <div>
             <LiaShippingFastSolid className="text-5xl text-black bg-secondary rounded-full p-2" />
           </div>
-          <h1 className="text-3xl text-black text-bold">
+          <h1 className="text-xl text-black font-bold">
             Fast and Free
             <br /> Shipping
           </h1>
@@ -46,7 +46,7 @@ const ProductShowcase = () => {
           <div>
             <FiShoppingBag className="text-5xl text-black bg-secondary rounded-full p-2" />
           </div>
-          <h1 className="text-3xl text-black text-bold">
+          <h1 className="text-xl text-black font-bold">
             Easy to
             <br /> Shop
           </h1>
@@ -55,7 +55,7 @@ const ProductShowcase = () => {
           <div>
             <TiSupport className="text-5xl text-black bg-secondary rounded-full p-2" />
           </div>
-          <h1 className="text-3xl text-black text-bold">
+          <h1 className="text-xl text-black font-bold">
             24/7
             <br /> Support
           </h1>
@@ -64,7 +64,7 @@ const ProductShowcase = () => {
           <div>
             <IoReturnUpBackOutline className="text-5xl text-black bg-secondary rounded-full p-2" />
           </div>
-          <h1 className="text-3xl text-black text-bold">
+          <h1 className="text-xl text-black font-bold">
             Hassle Free
             <br /> Returns
           </h1>

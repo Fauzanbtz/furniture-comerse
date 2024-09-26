@@ -160,11 +160,11 @@ export default function Main() {
             <span>Add Product</span>
           </Link>
           {isModalOpen && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-              <div className="bg-white p-6 rounded-lg w-1/3">
+            <div className="fixed inset-0 bg-black bg-opacity-50  flex items-center justify-center">
+              <div className="bg-white p-6 rounded-lg w-1/2">
                 <h2 className="text-lg font-bold mb-4">Tambah Produk</h2>
                 <form onSubmit={addProducts}>
-                  <div className="mb-4">
+                  <div className="">
                     <label className="block text-sm font-medium mb-1">
                       Nama Produk
                     </label>
@@ -174,7 +174,7 @@ export default function Main() {
                       onChange={(e) => setName(e.target.value)}
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="">
                     <label className="block text-sm font-medium mb-1">
                       Harga Produk
                     </label>
@@ -184,7 +184,7 @@ export default function Main() {
                       onChange={(e) => setPrice(parseInt(e.target.value))}
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="">
                     <label className="block text-sm font-medium mb-1">
                       Gambar
                     </label>
@@ -194,7 +194,7 @@ export default function Main() {
                       onChange={(e) => setImage(e.target.value)}
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="">
                     <label className="block text-sm font-medium mb-1">
                       Deskripsi Produk
                     </label>
@@ -204,7 +204,7 @@ export default function Main() {
                       onChange={(e) => setDescription(e.target.value)}
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="">
                     <label className="block text-sm font-medium mb-1">
                       Kategori
                     </label>

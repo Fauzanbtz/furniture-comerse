@@ -14,8 +14,8 @@ const Info = () => {
         long-lasting.
       </p>
       <div className="gap-4 flex items-center">
-        <Button variant="secondary" className="w-fit bg-secondary text-white">
-          Secondary
+        <Button variant="secondary" className="w-fit text-3xl font-light p-7 rounded-full bg-secondary text-white">
+          Shop Now
         </Button>
         <a href="#" className="underline text-white">
           Follow Instagram

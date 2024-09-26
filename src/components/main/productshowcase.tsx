@@ -5,29 +5,9 @@ import { TiSupport } from "react-icons/ti";
 import { IoReturnUpBackOutline } from "react-icons/io5";
 import Image from "next/image";
 import image1 from "../../../public/showcase/image1.jpeg";
-import { IoIosArrowRoundForward } from "react-icons/io";
-
-const data = [
-  {
-    name: "Center Table",
-    image: image1,
-  },
-  {
-    name: "Center Table",
-    image: image1,
-  },
-  {
-    name: "Center Table",
-    image: image1,
-  },
-  {
-    name: "Center Table",
-    image: image1,
-  },
-];
-
-import { Card, CardContent } from "@/components/ui/card";
-import { icons } from "lucide-react";
+import table from "../../../public/images/table.png";
+import lamp from "../../../public/images/lamp.png";
+import chair from "../../../public/images/chair.png";
 
 const ProductShowcase = () => {
   return (
@@ -70,33 +50,91 @@ const ProductShowcase = () => {
           </h1>
         </div>
       </div>
-      <Card className="flex flex-wrap items-center justify-center">
-        {data.map((item, index) => (
-          <CardContent key={index} className="m-4 w-full md:w-1/2 lg:w-1/3">
-            <div className="flex justify-center items-center">
-              <div className="flex flex-row reverse justify-center items-center p-10 gap-2">
-                <Image
-                  src={item.image}
-                  alt="Product Image"
-                  width={800}
-                  height={800}
-                  className="w-full h-[18rem] object-cover rounded-2xl"
-                />
-                <div className="flex flex-col gap-10">
-                  <p className="text-primary">NEW COLLECTION</p>
-                  <h1 className="text-3xl text-black font-bold">{item.name}</h1>
-                  <a
-                    href="#"
-                    className="underline text-primary flex items-center">
-                    View All
-                    <IoIosArrowRoundForward />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        ))}
-      </Card>
+      <div className="grid lg:grid-cols-4 grid-cols-4 gap-6 p-8">
+        {/* Card 1 */}
+        <div className="bg-white p-6 rounded-xl shadow-md flex items-center col-span-2">
+          <div className="w-1/2 ">
+            <span className="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">
+              NEW COLLECTION
+            </span>
+            <h2 className="text-2xl font-bold mt-4">Center Table</h2>
+            <ul className="mt-2 text-gray-600">
+              <li>Square table</li>
+              <li>Round table</li>
+              <li>Wooden table</li>
+              <li>Glass table</li>
+            </ul>
+            <a href="#" className="text-blue-500 mt-4 inline-block">
+              View All →
+            </a>
+          </div>
+          <div className="w-1/2 flex justify-center">
+            <Image
+              src={table}
+              alt="Accent Chairs"
+              className="max-w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Card 2 */}
+        <div className="bg-white p-6 rounded-xl shadow-md flex col-span-2 row-span-2">
+          <div className="w-1/2">
+            <span className="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">
+              NEW COLLECTION
+            </span>
+            <h2 className="text-2xl font-bold mt-4">Lighting Lamp</h2>
+            <ul className="mt-2 text-gray-600">
+              <li>Floor lamps</li>
+              <li>Tripod lamps</li>
+              <li>Table lamps</li>
+              <li>Study lamps</li>
+            </ul>
+            <a href="#" className="text-blue-500 mt-4 inline-block">
+              View All →
+            </a>
+          </div>
+          <div className="w-1/2 flex justify-center">
+            <Image
+              src={lamp}
+              alt="Accent Chairs"
+              className="max-w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Card 3 */}
+        <div className="bg-white p-6 rounded-xl shadow-md flex items-center">
+          <div className="w-1/2">
+            <span className="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">
+              NEW COLLECTION
+            </span>
+            <h2 className="text-2xl font-bold mt-4">Accent Chairs</h2>
+            <ul className="mt-2 text-gray-600">
+              <li>Arm chair</li>
+              <li>Wing chair</li>
+              <li>Cafe chair</li>
+              <li>Wheels chair</li>
+            </ul>
+            <a href="#" className="text-blue-500 mt-4 inline-block">
+              View All →
+            </a>
+          </div>
+          <div className="w-1/2 h-full flex justify-center">
+            <Image
+              src={chair}
+              alt="Accent Chairs"
+              className="max-w-full h-auto"
+            />
+          </div>
+        </div>
+
+        {/* Card 4 */}
+        <div className="bg-primary p-6 rounded-xl shadow-md text-white flex flex-col items-center justify-center">
+          <p className="font-bold text-lg bg-secondary p-2 rounded-full">GET DISCOUNT</p>
+          <h2 className="text-4xl font-bold">20% OFFER</h2>
+        </div>
+      </div>
     </div>
   );
 };

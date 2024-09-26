@@ -11,18 +11,63 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { CiShoppingCart } from "react-icons/ci";
+import Image from "next/image";
+import table from "../../../public/images/table.png";
+import chair from "../../../public/images/chair.png";
+import lamp from "../../../public/images/lamp.png";
+
+const data = [
+  {
+    id: 1,
+    image: table,
+    tittle: "Table",
+    price: 120.99,
+  },
+  {
+    id: 1,
+    image: chair,
+    tittle: "chair",
+    price: 50.99,
+  },
+  {
+    id: 1,
+    image: lamp,
+    tittle: "lamp",
+    price: 90.99,
+  },
+  {
+    id: 1,
+    image: table,
+    tittle: "Table",
+    price: 120.99,
+  },
+  {
+    id: 1,
+    image: chair,
+    tittle: "chair",
+    price: 50.99,
+  },
+  {
+    id: 1,
+    image: lamp,
+    tittle: "lamp",
+    price: 90.99,
+  },
+  
+];
 
 const TrendingProducts = () => {
-    // State to track which button is active
-    const [activeIndex, setActiveIndex] = useState(0);
+  // State to track which button is active
+  const [activeIndex, setActiveIndex] = useState(0);
 
-    // Handler to change active button
-    const handleActive = (index: number) => {
-      setActiveIndex(index);
-    };
+  // Handler to change active button
+  const handleActive = (index: number) => {
+    setActiveIndex(index);
+  };
 
   return (
-    <div className="h-screen py-10 px-20">
+    <div className="py-10 px-20">
       <div className="flex  justify-between items-center">
         <h1 className="text-3xl font-semibold text-black">
           Trending Products for You!
@@ -51,21 +96,34 @@ const TrendingProducts = () => {
           )}
         </ul>
       </div>
-      <div className="flex justify-around items-center my-10">
-        <Card className="w-[20rem] bg-red-300 border-0 ">
-          <div className="flex justify-between items-center p-3">
-            <h1 className="font-light text-sm p-2 rounded-full text-white bg-primary w-fit ">
-              -20%
-            </h1>
-            <FcLike className="text-3xl text-white" />
-          </div>
-          <CardContent>
-            <p>Card Content</p>
-          </CardContent>
-          <CardFooter>
-            <p>Card Footer</p>
-          </CardFooter>
-        </Card>
+      <div className="flex flex-wrap justify-around items-center my-10 gap-10">
+        {data.map((product) => (
+          <Card className="border rounded-xl bg-[#f8f7f7]" key={product.id}>
+            <div className="flex justify-between items-center p-3">
+              <h1 className="font-light text-sm p-2 rounded-full text-white bg-primary w-fit ">
+                -20%
+              </h1>
+              <FcLike className="text-3xl text-white" />
+            </div>
+            <CardContent>
+              <Image src={product.image} alt="table" width={300} height={300} />
+            </CardContent>
+
+            <div className="flex items-center justify-between bg-primary rounded-xl p-5">
+              <div className="flex flex-col">
+                <h1 className="text-xl font-semibold text-white">
+                  {product.tittle}
+                </h1>
+                <p className="text-sm font-thin text-white">
+                  $ {product.price}
+                </p>
+              </div>
+              <a className=" bg-secondary p-3 rounded-full">
+                <CiShoppingCart className="text-xl text-white" />
+              </a>
+            </div>
+          </Card>
+        ))}
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import * as React from "react";
 import { CarouselCategories } from "@/components/main/carouselCategories";
 import Footer from "@/components/common/footer";
 import TrendingProducts from "@/components/main/trendingProducts";
+import QuestionSection from "@/components/main/questionSection";
 
 
 export default function Home() {
@@ -28,6 +29,7 @@ export default function Home() {
       <ProductShowcase />
       <CarouselCategories />
       <TrendingProducts/>
+      <QuestionSection/>
       <Footer />
     </>
   );

@@ -50,11 +50,11 @@ const ProductShowcase = () => {
           </h1>
         </div>
       </div>
-      <div className="grid lg:grid-cols-4 grid-cols-4 gap-6 p-8">
+      <div className="grid lg:grid-cols-4 grid-cols-1 gap-6 p-8">
         {/* Card 1 */}
-        <div className="bg-white p-6 rounded-xl shadow-md flex items-center col-span-2">
+        <div className="bg-white p-6 rounded-xl shadow-md flex items-center lg:col-span-2">
           <div className="w-1/2 ">
-            <span className="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">
+            <span className="bg-gray-200 text-gray-800 text-[10px] font-semibold px-3 py-1 rounded-full">
               NEW COLLECTION
             </span>
             <h2 className="text-2xl font-bold mt-4">Center Table</h2>
@@ -78,9 +78,9 @@ const ProductShowcase = () => {
         </div>
 
         {/* Card 2 */}
-        <div className="bg-white p-6 rounded-xl shadow-md flex col-span-2 row-span-2">
+        <div className="bg-white p-6 rounded-xl shadow-md flex lg:col-span-2 lg:row-span-2">
           <div className="w-1/2">
-            <span className="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">
+            <span className="bg-gray-200 text-gray-800 text-[10px] font-semibold px-3 py-1 rounded-full">
               NEW COLLECTION
             </span>
             <h2 className="text-2xl font-bold mt-4">Lighting Lamp</h2>
@@ -106,7 +106,7 @@ const ProductShowcase = () => {
         {/* Card 3 */}
         <div className="bg-white p-6 rounded-xl shadow-md flex items-center">
           <div className="w-1/2">
-            <span className="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">
+            <span className="bg-gray-200 text-gray-800 text-[10px] font-semibold px-3 py-1 rounded-full">
               NEW COLLECTION
             </span>
             <h2 className="text-2xl font-bold mt-4">Accent Chairs</h2>

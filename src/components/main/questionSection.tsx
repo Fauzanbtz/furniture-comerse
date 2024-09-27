@@ -8,7 +8,7 @@ import {
 
 export default function QuestionSection() {
   return (
-    <div className="flex flex-col justify-center items-center p-10 gap-5 h-screen">
+    <div className="flex flex-col justify-center items-center p-10 gap-5 md:h-screen">
       <h1 className="text-6xl font-bold text-black text-center">
         Got Questions? <br></br>We've Got Answers
       </h1>

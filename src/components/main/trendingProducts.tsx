@@ -67,7 +67,7 @@ const TrendingProducts = () => {
   };
 
   return (
-    <div className="py-10 px-20">
+    <div className="py-10 px-5 md:px-20">
       <div className="flex  justify-between items-center">
         <h1 className="text-3xl font-semibold text-black">
           Trending Products for You!
@@ -76,7 +76,7 @@ const TrendingProducts = () => {
           View All Products <IoIosArrowRoundForward className="text-3xl" />{" "}
         </Button>
       </div>
-      <div className="w-1/2">
+      <div className="md:w-1/2 overflow-auto">
         <ul className="flex justify-between items-center my-10">
           {["Bed Room", "Living Room", "Kitchen", "Bathroom", "Office"].map(
             (room, index) => (

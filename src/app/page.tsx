@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <header className="h-screen bg-primary flex items-center px-10">
+      <header className="md:h-screen  bg-primary flex items-center px-10 py-10">
         <div className="flex flex-wrap items-center justify-around w-full">
           {/* Konten Teks */}
           <Info/>
